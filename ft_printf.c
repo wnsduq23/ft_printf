@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:30:10 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/12 17:27:02 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/12 18:01:28 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,23 @@ void	parsing_specifier(t_tag *p_tag, size_t len)
 {
 	/** len 있는 이유 : 폭과 정밀도에 따라 출력해야하는게 달라질 수 있어서 */
 	if (p_tag->specifier == 'c')
-
+		ft_putchar_fd(???, STDOUT);
 	else if (p_tag->specifier == 's')
-		;
+		ft_putstr_fd(???, STDOUT, len);
 	else if (p_tag->specifier == 'p')
-		;
-	else if (p_tag->specifier == 'd')
-		;
-	else if (p_tag->specifier == 'i')
-		;
+		ft_print_address();
+	else if (p_tag->specifier == 'd' || p_tag->specifier == 'i')
+		ft_atoi();
 	else if (p_tag->specifier == 'u')
-		;
+		ft_unsigned_atoi();
 	else if (p_tag->specifier == 'x')
-		;
+		ft_atoi_base(str, "0123456789abcdef");
 	else if (p_tag->specifier == 'X')
-		;
+		ft_atoi_base(str, "0123456789ABCDEF");
 	else if (p_tag->specifier == '%')
-		write(1, "%", 1);
+		ft_putchar_fd('%', STDOUT);
 	else 
-		return ;
+		return ;//이거 어떻게 해야 오류인 걸 알 수 있을까?
 }
 
 int is_separator()
@@ -90,4 +88,5 @@ void	print_tag()
 	/** specifier 확인 후에 그 서식의 format len을 보장하고 */
 	/** specifier를 확인한다음 s인 경우만 precision 영향가게 하면 될 듯? */
 	/** 나머지 남는 사이즈는 flag 확인 해서 해당하는 걸로 채운다 */
+	parsing_specifier();
 }

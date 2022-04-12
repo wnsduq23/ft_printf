@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:36:35 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/12 17:14:18 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/12 17:32:35 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <unistd.h>
+
+typedef enum
+{
+	STDOUT = 1;
+} AAAAAAAAAAAAAA;
 
 typedef struct s_tag
 {
