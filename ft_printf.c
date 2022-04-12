@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:30:10 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/12 16:33:55 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/12 17:27:02 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,36 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	argptr;
 	t_tag	a;
-	size_t	i;
 
 	va_start(argptr, format);
-	i = 0;
-	read_tag();
+	read_tag(argptr, format);
 	va_end(argptr);
 	return  // 반환값 overflow도 신경써줘야하나?
 }
 
-void	read_tag()
+void	read_tag(va_list argptr, const char *format)
 {
+	while (format끝날때까지)
+	{
+		if (is_separator(1))
+		{
+			char * a = va_arg(argptr, char *)
+		}
+		else if (is_separator(2))
+			int a = va_arg(argptr, int);
+		else if (is_separator(0))
+			format++;
+
+	}
 	/** 형식 태그를 읽어들여서 구조체에 해당하는 값을 집어 넣는다 */
+	/** 어떻게 읽어들일까? 기준이 문자->숫자 or 숫자->문자 로 짜르면 됨  */
 }
 
-void	parsing_specifier(t_tag *p_tag)
+void	parsing_specifier(t_tag *p_tag, size_t len)
 {
+	/** len 있는 이유 : 폭과 정밀도에 따라 출력해야하는게 달라질 수 있어서 */
 	if (p_tag->specifier == 'c')
-		return ;
+
 	else if (p_tag->specifier == 's')
 		;
 	else if (p_tag->specifier == 'p')
@@ -62,4 +74,20 @@ void	parsing_specifier(t_tag *p_tag)
 		write(1, "%", 1);
 	else 
 		return ;
+}
+
+int is_separator()
+{
+	/** 문자->숫자 return (1); */
+	/** 숫자-> 문자 return (2); */
+	/** otherwise return (0); */
+}
+
+void	print_tag()
+{
+	/** 각 값이 들어온 것을 write */
+	/** width 를 먼저 고려하고,  */
+	/** specifier 확인 후에 그 서식의 format len을 보장하고 */
+	/** specifier를 확인한다음 s인 경우만 precision 영향가게 하면 될 듯? */
+	/** 나머지 남는 사이즈는 flag 확인 해서 해당하는 걸로 채운다 */
 }
