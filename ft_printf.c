@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:30:10 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/12 18:28:26 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/12 20:46:32 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
   *     ' '	: 앞에 공백 출력
   *     +	: 부호 + or - 출력
   *     0	: 0으로 왼쪽에서부터 출력
-  *     .	: 뒤에 오는 숫자만큼 출력
+  *     .	: 뒤에 오는 숫자만큼 출력 - non_flag
   *     -	: 왼쪽으로 맞춤. 오른쪽은 공백 */
 
 static int	is_separator()
@@ -32,15 +32,18 @@ static int	is_separator()
 
 static void	read_tag(va_list argptr, const char *format)
 {
-	while (format끝날때까지)
+	t_tag	tag;
+
+	memset(&tag,0,sizeof(tag));
+	while (*format)
 	{
-		if (is_separator(1))
+		if (is_separator() == 1)
 		{
 			char * a = va_arg(argptr, char *);
 		}
-		else if (is_separator(2))
+		else if (is_separator() == 2)
 			int a = va_arg(argptr, int);
-		else if (is_separator(0))
+		else if (is_separator() == 0)
 			format++;
 
 	}
@@ -71,7 +74,7 @@ static void	parsing_specifier(const char **fmt, t_tag *p_tag, size_t len)
 		return ;//이거 어떻게 해야 오류인 걸 알 수 있을까?
 }
 
-static void	print_tag()
+static void	print_tag(t_tag *p_tag)
 {
 	/** 각 값이 들어온 것을 write */
 	/** width 를 먼저 고려하고,  */
@@ -84,10 +87,9 @@ static void	print_tag()
 int	ft_printf(const char *format, ...)
 {
 	va_list	argptr;
-	t_tag	a;
 
 	va_start(argptr, format);
 	read_tag(argptr, format);
 	va_end(argptr);
-	return  // 반환값 overflow도 신경써줘야하나?
+	return ; // 반환값 overflow도 신경써줘야하나?
 }
