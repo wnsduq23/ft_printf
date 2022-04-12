@@ -6,18 +6,20 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:40:34 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/12 18:03:25 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/12 18:24:00 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_space(char c)
+#include "ft_printf.h"
+
+static int	is_space(char c)
 {
 	if ((9 <= c && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }
 
-int	ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -27,7 +29,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_find_idx(char a, char *base)
+static int	ft_find_idx(char a, char *base)
 {
 	int	i;
 
@@ -41,7 +43,7 @@ int	ft_find_idx(char a, char *base)
 	return (-1);
 }
 
-int	Except_check(char *base)
+static int	Except_check(char *base)
 {
 	int	len;
 	int	i;

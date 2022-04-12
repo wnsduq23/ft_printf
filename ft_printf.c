@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:30:10 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/12 18:01:28 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/12 18:28:26 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,21 @@
   *     0	: 0으로 왼쪽에서부터 출력
   *     .	: 뒤에 오는 숫자만큼 출력
   *     -	: 왼쪽으로 맞춤. 오른쪽은 공백 */
-int	ft_printf(const char *format, ...)
-{
-	va_list	argptr;
-	t_tag	a;
 
-	va_start(argptr, format);
-	read_tag(argptr, format);
-	va_end(argptr);
-	return  // 반환값 overflow도 신경써줘야하나?
+static int	is_separator()
+{
+	/** 문자->숫자 return (1); */
+	/** 숫자-> 문자 return (2); */
+	/** otherwise return (0); */
 }
 
-void	read_tag(va_list argptr, const char *format)
+static void	read_tag(va_list argptr, const char *format)
 {
 	while (format끝날때까지)
 	{
 		if (is_separator(1))
 		{
-			char * a = va_arg(argptr, char *)
+			char * a = va_arg(argptr, char *);
 		}
 		else if (is_separator(2))
 			int a = va_arg(argptr, int);
@@ -51,13 +48,13 @@ void	read_tag(va_list argptr, const char *format)
 	/** 어떻게 읽어들일까? 기준이 문자->숫자 or 숫자->문자 로 짜르면 됨  */
 }
 
-void	parsing_specifier(t_tag *p_tag, size_t len)
+static void	parsing_specifier(const char **fmt, t_tag *p_tag, size_t len)
 {
 	/** len 있는 이유 : 폭과 정밀도에 따라 출력해야하는게 달라질 수 있어서 */
 	if (p_tag->specifier == 'c')
-		ft_putchar_fd(???, STDOUT);
+		ft_putchar_fd(*fmt, STDOUT);
 	else if (p_tag->specifier == 's')
-		ft_putstr_fd(???, STDOUT, len);
+		ft_putstr_fd(fmt, STDOUT, len);
 	else if (p_tag->specifier == 'p')
 		ft_print_address();
 	else if (p_tag->specifier == 'd' || p_tag->specifier == 'i')
@@ -65,23 +62,16 @@ void	parsing_specifier(t_tag *p_tag, size_t len)
 	else if (p_tag->specifier == 'u')
 		ft_unsigned_atoi();
 	else if (p_tag->specifier == 'x')
-		ft_atoi_base(str, "0123456789abcdef");
+		ft_atoi_base(fmt, "0123456789abcdef");
 	else if (p_tag->specifier == 'X')
-		ft_atoi_base(str, "0123456789ABCDEF");
+		ft_atoi_base(fmt, "0123456789ABCDEF");
 	else if (p_tag->specifier == '%')
 		ft_putchar_fd('%', STDOUT);
 	else 
 		return ;//이거 어떻게 해야 오류인 걸 알 수 있을까?
 }
 
-int is_separator()
-{
-	/** 문자->숫자 return (1); */
-	/** 숫자-> 문자 return (2); */
-	/** otherwise return (0); */
-}
-
-void	print_tag()
+static void	print_tag()
 {
 	/** 각 값이 들어온 것을 write */
 	/** width 를 먼저 고려하고,  */
@@ -89,4 +79,15 @@ void	print_tag()
 	/** specifier를 확인한다음 s인 경우만 precision 영향가게 하면 될 듯? */
 	/** 나머지 남는 사이즈는 flag 확인 해서 해당하는 걸로 채운다 */
 	parsing_specifier();
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list	argptr;
+	t_tag	a;
+
+	va_start(argptr, format);
+	read_tag(argptr, format);
+	va_end(argptr);
+	return  // 반환값 overflow도 신경써줘야하나?
 }

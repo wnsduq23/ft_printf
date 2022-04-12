@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:36:35 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/12 17:32:35 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/12 18:25:25 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,9 @@ typedef struct s_tag
 	unsigned int	precision;
 	char			specifier;
 }t_tag;
+
+int	ft_atoi_base(char *str, char *base);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd, size_t len);
+int	ft_atoi(const char *str);
 #endif
