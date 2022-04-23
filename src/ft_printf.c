@@ -6,15 +6,15 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:30:10 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/12 20:46:32 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/23 20:16:58 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 /** va_start 2nd argument? */
-/** va_start에서 format 다음 위치를 구한 다음에 argptr에 그 주소값을 넣음 */
+/** va_start에서 fmt 다음 위치를 구한 다음에 argptr에 그 주소값을 넣음 */
 /** va_arg에서 2nd 인자에 타입을 넣어서 타입만큼 argptr을 이동시키고 return 타입 사이즈만큼의 값 */
-/** format : 문자열 전체를 담아둠. 가변인자는 콤마가 필드구분자로 해서 입력받은 값을 받음 */
+/** fmt : 문자열 전체를 담아둠. 가변인자는 콤마가 필드구분자로 해서 입력받은 값을 받음 */
 /** flag
   *     #	: 0x 출력, ??
   *     ' '	: 앞에 공백 출력
@@ -30,12 +30,12 @@ static int	is_separator()
 	/** otherwise return (0); */
 }
 
-static void	read_tag(va_list argptr, const char *format)
+static int	read_tag(va_list argptr, const char *fmt)
 {
 	t_tag	tag;
 
 	memset(&tag,0,sizeof(tag));
-	while (*format)
+	while (*fmt)
 	{
 		if (is_separator() == 1)
 		{
@@ -44,7 +44,7 @@ static void	read_tag(va_list argptr, const char *format)
 		else if (is_separator() == 2)
 			int a = va_arg(argptr, int);
 		else if (is_separator() == 0)
-			format++;
+			fmt++;
 
 	}
 	/** 형식 태그를 읽어들여서 구조체에 해당하는 값을 집어 넣는다 */
@@ -78,18 +78,19 @@ static void	print_tag(t_tag *p_tag)
 {
 	/** 각 값이 들어온 것을 write */
 	/** width 를 먼저 고려하고,  */
-	/** specifier 확인 후에 그 서식의 format len을 보장하고 */
+	/** specifier 확인 후에 그 서식의 fmt len을 보장하고 */
 	/** specifier를 확인한다음 s인 경우만 precision 영향가게 하면 될 듯? */
 	/** 나머지 남는 사이즈는 flag 확인 해서 해당하는 걸로 채운다 */
 	parsing_specifier();
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *fmt, ...)
 {
 	va_list	argptr;
+	int		done;
 
-	va_start(argptr, format);
-	read_tag(argptr, format);
+	va_start(argptr, fmt);
+	done = read_tag(argptr, fmt);
 	va_end(argptr);
-	return ; // 반환값 overflow도 신경써줘야하나?
+	return (done); // 반환값 overflow도 신경써줘야하나?
 }
