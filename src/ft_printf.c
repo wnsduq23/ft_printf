@@ -6,14 +6,14 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:30:10 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/23 20:16:58 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/24 11:39:14 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 /** va_start 2nd argument? */
 /** va_start에서 fmt 다음 위치를 구한 다음에 argptr에 그 주소값을 넣음 */
-/** va_arg에서 2nd 인자에 타입을 넣어서 타입만큼 argptr을 이동시키고 return 타입 사이즈만큼의 값 */
+/** va_arg에서 2nd 인자에 타입을 넣어서 타입만큼 argptr을 이동시키고 return 타입 사이즈만큼의 길이를 갖는 값 */
 /** fmt : 문자열 전체를 담아둠. 가변인자는 콤마가 필드구분자로 해서 입력받은 값을 받음 */
 /** flag
   *     #	: 0x 출력, ??
