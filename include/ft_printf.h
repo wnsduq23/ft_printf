@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:36:35 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/24 12:02:40 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/24 16:04:37 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <unistd.h>
+# include <stdlib.h>
 # include "libft.h"
 
 typedef enum
@@ -23,6 +24,6 @@ typedef enum
 } AAAAAAAAAAAAAA;
 
 int		ft_atoi_base(char *str, char *base);
-void	ft_putstr_fd_len(char *s, int fd, size_t len);
-size_t	ft_putstr(char *fmt);
+size_t	ft_putstr(const char *fmt);
+void	ft_print_hex_fit(size_t input, int mode);
 #endif
