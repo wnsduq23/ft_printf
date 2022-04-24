@@ -6,7 +6,7 @@
 #    By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 13:39:13 by junykim           #+#    #+#              #
-#    Updated: 2022/04/23 20:09:45 by junykim          ###   ########.fr        #
+#    Updated: 2022/04/24 17:45:59 by junykim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,25 +16,30 @@ NAME	 	= libftprintf.a
 CC			= gcc
 CFLAG		= -Wall -Wextra -Werror
 SRC_DIR		= src/
+OBJ_DIR		= obj/
 LIBFT 		= libft
 INC 		= include
 DEL 		= rm -f
-ARC 		= ar -rc
+ARC 		= ar rsc
 
 #Sources
-SRCS 		= ./src/ft_printf.c \
-			  ./src/ft_printf_hex.c \
-			  ./src/ft_printf_utils.c
-OBJS 		= $(SRCS:.c=.o)
+SRC_FILES	=	ft_printf_m \
+				ft_printf_hex ft_printf_utils
+SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+OBJF		=	create_dir
 
 #Rules
 all : $(NAME)
 
-%.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@ -I$(INC)
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
+	$(CC) $(CFLAG) -c $< -o $@ -I $(INC)
 	@echo "Compiling....... \t$<"
 
-$(NAME) : $(OBJS)
+$(OBJF) :
+	@mkdir -p $(OBJ_DIR)
+
+$(NAME) : $(OBJ)
 	@make -C $(LIBFT)
 	@cp libft/libft.a .
 	@mv libft.a $(NAME)
@@ -42,7 +47,7 @@ $(NAME) : $(OBJS)
 	@echo "-----------------ft_printf compile finished-----------------"
 
 clean :
-	$(DEL) $(OBJS)
+	$(DEL) -r $(OBJ_DIR)
 	@make clean -C $(LIBFT)
 	@echo "ft_printf obj files has been deleted------------------------"
 

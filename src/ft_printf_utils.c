@@ -6,10 +6,10 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:35:58 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/24 16:09:36 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/24 19:27:30 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdlib.h>
 #include "../include/ft_printf.h"
 
 size_t	ft_putstr(const char *s)
@@ -18,37 +18,37 @@ size_t	ft_putstr(const char *s)
 	
 	if (s == 0)
 	{
-		write (STDOUT, "(NULL)", 6);
+		write (STDOUT, "(null)", 6);
 		return (0);
 	}
 	from = s;
-	while (ft_isalnum(*s))
+	while (*s != '%' && *s != 0)
 		s++;
-	write(STDOUT, s, s - from + 1);
-	return (s - from + 1);
+	write(STDOUT, from, s - from);
+	return (s - from);
 }
 
-void	ft_print_hex_16(unsigned long long input, int mode)
-{
-	char		output[17];
-	const char	*hex;
-	size_t		i;
-
-
-	if (mode)	
-		hex = "0123456789abcdef";
-	else
-		hex = "0123456789ABCDEF";
-	i = 16;
-	while (i > 0)
-	{
-		output[i] = hex[input % 16];
-		input /= 16;
-		i--;
-	}
-	output[16] = 0;
-	write(STDOUT, output, 16);
-}
+/** void	ft_print_hex_16(unsigned long long input, int mode) */
+/** { */
+/**     char		output[17]; */
+/**     const char	*hex; */
+/**     size_t		i; */
+/**  */
+/**  */
+/**     if (mode)	 */
+/**         hex = "0123456789abcdef"; */
+/**     else */
+/**         hex = "0123456789ABCDEF"; */
+/**     i = 16; */
+/**     while (i > 0) */
+/**     { */
+/**         output[i] = hex[input % 16]; */
+/**         input /= 16; */
+/**         i--; */
+/**     } */
+/**     output[16] = 0; */
+/**     write(STDOUT, output, 16); */
+/** } */
 
 static size_t	input_len(size_t input)
 {
@@ -101,4 +101,10 @@ void ft_putnbr_fd_uint(int n, int fd)
 		ft_putchar_fd(n % 10 + '0', fd);
 	}
 
+}
+
+int	ft_putchar_int(char c)
+{
+	write(STDOUT, &c, 1);
+	return (1);
 }
