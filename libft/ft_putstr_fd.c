@@ -6,10 +6,11 @@
 /*   By: junykim <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:33:39 by junykim           #+#    #+#             */
-/*   Updated: 2022/03/14 14:13:42 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/25 21:12:32 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+
 void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	i;

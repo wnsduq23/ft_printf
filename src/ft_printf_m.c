@@ -6,34 +6,22 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 09:43:47 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/25 17:30:15 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/25 20:57:37 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
 /** TODO	1) if fail read_tag, then return what? */
-/**         2) */
+/**         2) make function pointer to parsing and remove if else condition */
+/**         3) have to clear that if malloc FAILED in fuction */
 static int	parsing_specifier(va_list argp, const char *fmt, t_tag *tag)
 {
-	if (*fmt == 'c')
-		ft_putchar_int(va_arg(argp, int), tag);
-	else if (*fmt == 's')
-		ft_putstr(va_arg(argp, char *), tag);
-	else if (*fmt == 'p')
-		ft_print_hex_malloc(va_arg(argp, unsigned long long), 2, tag);
-	else if (*fmt == 'd' || *fmt == 'i')
-		ft_putnbr_int(va_arg(argp, int), tag);
-	else if (*fmt == 'u')
-		ft_putnbr_uint(va_arg(argp, unsigned int), tag);
-	else if (*fmt == 'x')
-		ft_print_hex_malloc(va_arg(argp, unsigned int), 1, tag);
-	else if (*fmt == 'X')
-		ft_print_hex_malloc(va_arg(argp, unsigned int), 0, tag);
-	else if (*fmt == '%')
-		ft_putchar_int('%', tag);
-	else
-		return (0);
+	static void	(*fp[9])(va_list argp, t_tag *tag);
+
+	if (fp[8] == NULL)
+		link_fp_format(fp);
+	(fp[find_specifier_idx(fmt)])(argp, tag);
 	return (1);
 }
 

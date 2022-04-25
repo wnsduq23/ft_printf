@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:40:34 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/25 17:27:26 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/25 20:56:31 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static size_t	get_len_base(size_t input, int base)
 	return (size);
 }
 
-void	ft_print_hex_malloc(size_t input, int mode, t_tag *tag)
+size_t	ft_print_hex_malloc(size_t input, int mode)
 {
 	char		*output;
 	const char	*hex;
@@ -39,16 +39,10 @@ void	ft_print_hex_malloc(size_t input, int mode, t_tag *tag)
 		hex = "0123456789abcdef";
 	else if (mode == 0)
 		hex = "0123456789ABCDEF";
-	else if (mode == 2)
-	{
-		hex = "0123456789abcdef";
-		write(STDOUT, "0x", 2);
-		tag->cnt += 2;
-	}
 	i = get_len_base(input, 16);
 	output = malloc(sizeof(char) * i + 1);
 	if (!output)
-		return ;
+		return (0);
 	output[i] = 0;
 	tmp = i;
 	while (tmp > 0)
@@ -57,6 +51,6 @@ void	ft_print_hex_malloc(size_t input, int mode, t_tag *tag)
 		input /= 16;
 	}
 	write(STDOUT, output, i);
-	tag->cnt += i;
 	free(output);
+	return (i);
 }

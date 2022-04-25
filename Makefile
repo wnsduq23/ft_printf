@@ -6,7 +6,7 @@
 #    By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 13:39:13 by junykim           #+#    #+#              #
-#    Updated: 2022/04/24 17:45:59 by junykim          ###   ########.fr        #
+#    Updated: 2022/04/25 20:27:23 by junykim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ ARC 		= ar rsc
 
 #Sources
 SRC_FILES	=	ft_printf_m \
-				ft_printf_hex ft_printf_utils
+				ft_printf_hex ft_printf_utils \
+				ft_printf_format1 ft_printf_format2 \
+				ft_printf_fp
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 OBJF		=	create_dir

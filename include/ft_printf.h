@@ -6,10 +6,9 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:36:35 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/24 19:28:30 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/25 21:08:46 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
@@ -19,17 +18,37 @@
 
 typedef struct s_tag
 {
-	int		cnt;
-	char	tag;
-}t_tag;
+	int			cnt;
+}				t_tag;
 # define STDOUT (1)
-int		ft_atoi_base(char *str, char *base);
-size_t	ft_putstr(const char *fmt);
-void	ft_print_hex_fit(size_t input, int mode);
-int	ft_printf(const char *fmt, ...);
-size_t	ft_putstr(const char *s);
-void	ft_print_hex_16(unsigned long long input, int mode);
-void	ft_print_hex_fit(size_t input, int mode);
-int	ft_putchar_int(char c);
-void ft_putnbr_fd_uint(int n, int fd);
+
+/*------------------------
+	  format_function
+------------------------*/
+void	ft_format_c(va_list argp, t_tag *tag);
+void	ft_format_s(va_list argp, t_tag *tag);
+void	ft_format_p(va_list argp, t_tag *tag);
+void	ft_format_d(va_list argp, t_tag *tag);
+void	ft_format_i(va_list argp, t_tag *tag);
+void	ft_format_u(va_list argp, t_tag *tag);
+void	ft_format_x(va_list argp, t_tag *tag);
+void	ft_format_upperx(va_list argp, t_tag *tag);
+void	ft_format_percent(va_list argp, t_tag *tag);
+
+/*------------------------
+	ft_pointer_fuction
+------------------------*/
+int		find_specifier_idx(const char *fmt);
+void	link_fp_format(void (*fp[])(va_list, t_tag *));
+
+/*------------------------
+	   utils_function
+------------------------*/
+int		ft_printf(const char *fmt, ...);
+size_t	ft_putstr(const char *s, t_tag *tag);
+size_t	ft_print_hex_malloc(size_t input, int mode);
+void	ft_putchar_int(char c, t_tag *tag);
+void	ft_putnbr_uint(unsigned int n, t_tag *tag);
+void	ft_putnbr_int(int n, t_tag *tag);
+
 #endif
