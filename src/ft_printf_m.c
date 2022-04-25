@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 09:43:47 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/24 20:00:58 by junykim          ###   ########.fr       */
+/*   Updated: 2022/04/25 15:21:46 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 static int	parsing_specifier_and_print(va_list argp, const char *fmt, t_tag *tag)
 {
 	if (*fmt == 'c')
-		tag->cnt += ft_putchar_int(va_arg(argp, int));
+		ft_putchar_int(va_arg(argp, int), tag);
 	else if (*fmt == 's')
-		tag->cnt += ft_putstr(va_arg(argp, char *));
+		ft_putstr(va_arg(argp, char *), tag);
 	else if (*fmt  == 'p')
-		ft_print_hex_fit(va_arg(argp, unsigned long long), 1);
+		ft_print_hex_fit(va_arg(argp, unsigned long long), 2, tag);
 	else if (*fmt == 'd' || *fmt == 'i')
-		ft_putstr_fd(ft_itoa(va_arg(argp, int)), STDOUT);
+		ft_putnbr_int(va_arg(argp, int), tag);
 	else if (*fmt == 'u')
-		ft_putnbr_fd(va_arg(argp, unsigned int), STDOUT);
+		ft_putnbr_uint(va_arg(argp, unsigned int), tag);
 	else if (*fmt == 'x')
-		ft_print_hex_fit(va_arg(argp, unsigned int), 1);
+		ft_print_hex_fit(va_arg(argp, unsigned int), 1, tag);
 	else if (*fmt == 'X')
-		ft_print_hex_fit(va_arg(argp, unsigned int), 0);
+		ft_print_hex_fit(va_arg(argp, unsigned int), 0, tag);
 	else if (*fmt == '%')
-		ft_putchar_fd('%', STDOUT);
+		ft_putchar_int('%', tag);
 	else 
 		return (0);// FAIL
-	return (tag->cnt);// SUCCESS
+	return (1);// SUCCESS
 }
 //ex. abcd %d %c efg %s
 static int	read_tag(va_list argp, const char *fmt)
@@ -49,10 +49,7 @@ static int	read_tag(va_list argp, const char *fmt)
 				return (-1); // FAIL
 		}
 		else
-		{
-			/** tag.cnt += ft_putstr(fmt); */
-			fmt += ft_putstr(fmt) - 1;
-		}
+			fmt += ft_putstr(fmt, &tag) - 1;
 		fmt++;
 	}
 	return (tag.cnt);//SUCCESS
