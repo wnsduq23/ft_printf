@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:35:07 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/25 20:55:43 by junykim          ###   ########.fr       */
+/*   Updated: 2022/05/17 22:20:18 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_format_p(va_list argp, t_tag *tag)
 {
 	write(STDOUT, "0x", 2);
 	tag->cnt += 2;
-	tag->cnt += ft_print_hex_malloc(va_arg(argp, unsigned long long), 1);
+	tag->cnt += ft_print_hex_malloc(va_arg(argp, size_t), 1);
 }
 
 void	ft_format_d(va_list argp, t_tag *tag)

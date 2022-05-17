@@ -6,7 +6,7 @@
 #    By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 13:39:13 by junykim           #+#    #+#              #
-#    Updated: 2022/04/25 20:27:23 by junykim          ###   ########.fr        #
+#    Updated: 2022/05/04 22:04:24 by junykim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ fclean : clean
 	$(DEL) $(LIBFT)/libft.a
 	@echo "ft_printf archive files has been deleted" 
 
-re : fclean all
+re : 
+	make fclean
+	make all
 
 .PHONY : all clean fclean re 
