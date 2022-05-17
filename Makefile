@@ -6,7 +6,7 @@
 #    By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 13:39:13 by junykim           #+#    #+#              #
-#    Updated: 2022/05/04 22:04:24 by junykim          ###   ########.fr        #
+#    Updated: 2022/05/17 22:46:45 by junykim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ OBJF		=	create_dir
 #Rules
 all : $(NAME)
 
+# Pipe : order-only prerequisite
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
 	$(CC) $(CFLAG) -c $< -o $@ -I $(INC)
 	@echo "Compiling....... \t$<"
