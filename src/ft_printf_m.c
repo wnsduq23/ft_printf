@@ -6,15 +6,12 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 09:43:47 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/25 20:57:37 by junykim          ###   ########.fr       */
+/*   Updated: 2022/05/09 20:33:57 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-/** TODO	1) if fail read_tag, then return what? */
-/**         2) make function pointer to parsing and remove if else condition */
-/**         3) have to clear that if malloc FAILED in fuction */
 static int	parsing_specifier(va_list argp, const char *fmt, t_tag *tag)
 {
 	static void	(*fp[9])(va_list argp, t_tag *tag);
