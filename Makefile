@@ -6,14 +6,14 @@
 #    By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 13:39:13 by junykim           #+#    #+#              #
-#    Updated: 2022/05/17 22:46:45 by junykim          ###   ########.fr        #
+#    Updated: 2022/05/18 16:39:43 by junykim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Variables
 NAME	 	= libftprintf.a
 
-CC			= gcc
+CC			= cc
 CFLAG		= -Wall -Wextra -Werror
 SRC_DIR		= src/
 OBJ_DIR		= obj/
