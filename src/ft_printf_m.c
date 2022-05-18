@@ -6,20 +6,19 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 09:43:47 by junykim           #+#    #+#             */
-/*   Updated: 2022/05/09 20:33:57 by junykim          ###   ########.fr       */
+/*   Updated: 2022/05/18 13:55:28 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static int	parsing_specifier(va_list argp, const char *fmt, t_tag *tag)
+static void	parsing_specifier(va_list argp, const char *fmt, t_tag *tag)
 {
 	static void	(*fp[9])(va_list argp, t_tag *tag);
 
 	if (fp[8] == NULL)
 		link_fp_format(fp);
 	(fp[find_specifier_idx(fmt)])(argp, tag);
-	return (1);
 }
 
 static int	read_tag(va_list argp, const char *fmt)
@@ -32,8 +31,7 @@ static int	read_tag(va_list argp, const char *fmt)
 		if (*fmt == '%')
 		{
 			fmt++;
-			if (parsing_specifier(argp, fmt, &tag) == 0)
-				return (-1);
+			parsing_specifier(argp, fmt, &tag);
 		}
 		else
 			fmt += ft_putstr(fmt, &tag) - 1;
