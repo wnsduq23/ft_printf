@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:36:35 by junykim           #+#    #+#             */
-/*   Updated: 2022/04/25 21:08:46 by junykim          ###   ########.fr       */
+/*   Updated: 2022/05/24 21:11:14 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <unistd.h>
-# include "libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_tag
 {
