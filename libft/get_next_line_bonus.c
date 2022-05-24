@@ -6,7 +6,7 @@
 /*   By: junykim <junykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 17:16:40 by junykim           #+#    #+#             */
-/*   Updated: 2022/05/24 20:57:01 by junykim          ###   ########.fr       */
+/*   Updated: 2022/05/24 21:31:44 by junykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -92,7 +92,7 @@ static char	*read_fd(char **s_save, int fd)
 	return (new);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line_multi(int fd)
 {
 	static t_node	head;
 	t_node			*node;
